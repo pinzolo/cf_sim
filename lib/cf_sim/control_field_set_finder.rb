@@ -23,7 +23,7 @@ class CfSim::ControlFieldSetFinder
   def find_max_count_fields_list
     @max_count_control_fields_list = []
     find_recursively(CfSim::ControlFieldSet.new, @fields, :max_count)
-    @max_count_control_fields_list
+    @max_count_control_fields_list.sort_by(&:total_area).reverse
   end
 
   private

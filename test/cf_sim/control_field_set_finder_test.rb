@@ -57,6 +57,13 @@ class CfSim::ControlFieldSetFinderTest < Test::Unit::TestCase
       fields = finder.find_max_area_fields
       assert_in_delta fields.total_area, 43506.63104178156, 0.00001
     end
+
+    test '最大枚数のフィールドセットは面積順で返す' do
+      finder = CfSim::ControlFieldSetFinder.new(@points.creatable_fields)
+      fields_list = finder.find_max_count_fields_list
+      areas = fields_list.map(&:total_area)
+      assert_equal areas, areas.sort.reverse
+    end
   end
 end
 
