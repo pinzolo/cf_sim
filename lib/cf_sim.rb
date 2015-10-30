@@ -9,6 +9,7 @@ require 'cf_sim/control_field_set'
 require 'cf_sim/point_list'
 require 'cf_sim/coexistable_field_map'
 require 'cf_sim/control_field_set_finder'
+require 'cf_sim/intel_map_url_generator'
 require 'cf_sim/version'
 
 module CfSim
