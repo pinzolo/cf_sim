@@ -1,5 +1,6 @@
 # CF Simulator
 [![Build Status](https://secure.travis-ci.org/pinzolo/cf_sim)](http://travis-ci.org/pinzolo/cf_sim)
+[![Coverage Status](https://coveralls.io/repos/pinzolo/cf_sim/badge.png)](https://coveralls.io/r/pinzolo/cf_sim)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cf_sim`. To experiment with that code, run `bin/console` for an interactive prompt.
 
