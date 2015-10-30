@@ -1,4 +1,5 @@
-# CfSim
+# CF Simulator
+[![Build Status](https://secure.travis-ci.org/pinzolo/cf_sim)](http://travis-ci.org/pinzolo/cf_sim)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cf_sim`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -32,7 +33,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/cf_sim/fork )
+1. Fork it ( https://github.com/pinzolo/cf_sim/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
