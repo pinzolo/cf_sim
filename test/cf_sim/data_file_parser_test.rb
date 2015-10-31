@@ -19,4 +19,8 @@ class CfSim::DataFileParserTest < Test::Unit::TestCase
   test 'カンマが含まれたポータル名も読み取れている' do
     assert_equal '後二條天皇,北白河陵', @portals.last.name
   end
+
+  test 'ポータル名が与えられていないくても正常に処理ができる' do
+    assert_empty @portals[1].name
+  end
 end
