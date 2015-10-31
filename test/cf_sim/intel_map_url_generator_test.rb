@@ -10,7 +10,8 @@ class CfSim::IntelMapUrlGeneratorTest < Test::Unit::TestCase
                 CfSim::Portal.new('理学６号館'        , 35.029528, 135.783048),
                 CfSim::Portal.new('理学図書館'        , 35.029295, 135.782846),
                 CfSim::Portal.new('後二條天皇北白河陵', 35.029105, 135.784466)]
-    @generator = CfSim::IntelMapUrlGenerator.new
+    @portal_map = CfSim::PortalMap.new(@portals)
+    @generator = CfSim::IntelMapUrlGenerator.new(@portal_map)
   end
 
   test 'ポータルのリンクを生成' do
@@ -21,10 +22,9 @@ class CfSim::IntelMapUrlGeneratorTest < Test::Unit::TestCase
 
   test '多重CFのリンクを生成' do
     assert_nothing_raised do
-      portal_map = CfSim::PortalMap.new(@portals)
-      points = CfSim::PointList.new(portal_map.points)
+      points = CfSim::PointList.new(@portal_map.points)
       finder = CfSim::ControlFieldSetFinder.new(points.creatable_fields)
-      @generator.fields_link(finder.find_max_area_fields, portal_map)
+      @generator.fields_link(finder.find_max_area_fields)
     end
   end
 end
