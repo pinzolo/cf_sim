@@ -8,9 +8,9 @@ class CfSim::CLI < Thor
     puts @generator.fields_link(fields)
   end
 
-  desc 'max_count DATA_FILE', 'print max count control fields URL list.'
-  def max_count(data_file)
-    finder = load_finder_from(data_file)
+  desc 'max_count DATA_FILE LIMIT', 'print max count control fields URL list.'
+  def max_count(data_file, limit = nil)
+    finder = load_finder_from(data_file, limit ? limit.to_i : nil)
     fields_list = finder.find_max_count_fields_list
     max_area = fields_list.first.total_area
     fields_list.each do |fields|
@@ -21,11 +21,11 @@ class CfSim::CLI < Thor
 
   private
 
-  def load_finder_from(data_file)
+  def load_finder_from(data_file, limit)
     portals = CfSim::DataFileParser.new(data_file).parse
     portal_map = CfSim::PortalMap.new(portals)
     @generator = CfSim::IntelMapUrlGenerator.new(portal_map)
-    CfSim::ControlFieldSetFinder.new(CfSim::PointList.new(portal_map.points).creatable_fields)
+    CfSim::ControlFieldSetFinder.new(CfSim::PointList.new(portal_map.points).creatable_fields, limit_field_count: limit)
   end
 end
 

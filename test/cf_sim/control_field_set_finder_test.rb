@@ -27,10 +27,17 @@ class CfSim::ControlFieldSetFinderTest < Test::Unit::TestCase
     assert fields_list.all? { |fields| fields.size == 7 }
   end
 
-  test 'limit_field_countを指定した場合、特定枚数以下のフィールドセットは無視される' do
-    finder = CfSim::ControlFieldSetFinder.new(@points.creatable_fields, @points.max_field_count / 2)
+  test 'min_field_countを指定した場合、特定枚数以下のフィールドセットは無視される' do
+    finder = CfSim::ControlFieldSetFinder.new(@points.creatable_fields, min_field_count: @points.max_field_count / 2)
     fields_list = finder.find_all_fields_list
     assert fields_list.all? { |fields| fields.size >= @points.max_field_count / 2 }, "count: #{fields_list.map(&:size)}"
+  end
+
+  test 'limit_field_countを指定した場合、特定枚数以下のフィールドセットは無視される' do
+    finder = CfSim::ControlFieldSetFinder.new(@points.creatable_fields, limit_field_count: 1)
+    fields_list = finder.find_max_count_fields_list
+    assert_equal 1, fields_list.size
+    assert fields_list.all? { |fields| fields.size == 7 }
   end
 
   sub_test_case '実データテスト' do

@@ -31,7 +31,11 @@ cf_sim max_area <data_file>
 ### 指定のファイルに列挙されたポータルから作成できる最大枚数の多重CFのURLを面積順に出力する
 
 ```sh
+# あるだけ出力
 cf_sim max_count <data_file>
+
+# 面積の大きい順から10個出力
+cf_sim max_count <data_file> 10
 ```
 
 ### ポータルデータファイルの書式
