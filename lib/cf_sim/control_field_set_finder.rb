@@ -62,12 +62,11 @@ class CfSim::ControlFieldSetFinder
   end
 
   def ignore?(fields, coexistable_fields, type)
-    field_count = fields.size + coexistable_fields.size
     case type
     when :max_area
       @max_area_control_fields && fields.total_area + coexistable_fields.total_area <= @max_area_control_fields.total_area
     when :max_count
-      @max_count_control_fields_list.any? && field_count < @max_count_control_fields_list.first.size
+      @max_count_control_fields_list.any? && fields.size + coexistable_fields.size < @max_count_control_fields_list.first.size
     else
       false
     end
