@@ -11,6 +11,7 @@ require 'cf_sim/coexistable_field_map'
 require 'cf_sim/control_field_set_finder'
 require 'cf_sim/intel_map_url_generator'
 require 'cf_sim/version'
+require 'cf_sim/cli'
 
 module CfSim
   # Your code goes here...
