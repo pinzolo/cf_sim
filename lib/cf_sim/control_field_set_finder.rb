@@ -5,7 +5,6 @@ class CfSim::ControlFieldSetFinder
   def initialize(fields, options = {})
     @fields = CfSim::ControlFieldSet.new(fields.sort_by(&:area).reverse)
     @coexistable_field_map = CfSim::CoexistableFieldMap.new(@fields)
-    @min_field_count = options[:min_field_count] || 1
     @limit_field_count = options[:limit_field_count] || nil
     @max_count_control_fields_list = []
     @max_area_control_fields = nil
@@ -15,12 +14,6 @@ class CfSim::ControlFieldSetFinder
     @max_area_control_fields = nil
     find_recursively(CfSim::ControlFieldSet.new, @fields, :max_area)
     @max_area_control_fields
-  end
-
-  def find_all_fields_list
-    @control_fields_list = []
-    find_recursively(CfSim::ControlFieldSet.new, @fields, :all)
-    @control_fields_list
   end
 
   def find_max_count_fields_list
@@ -47,8 +40,6 @@ class CfSim::ControlFieldSetFinder
     case type
     when :max_area
       replace_if_max(fields)
-    when :all
-      append_to_list(fields, @control_fields_list)
     when :max_count
       append_or_create_if_max_count(fields)
     end
@@ -75,10 +66,8 @@ class CfSim::ControlFieldSetFinder
     case type
     when :max_area
       @max_area_control_fields && fields.total_area + coexistable_fields.total_area <= @max_area_control_fields.total_area
-    when :all
-      field_count < @min_field_count
     when :max_count
-      field_count < @min_field_count && @max_count_control_fields_list.any? && field_count < @max_count_control_fields_list.first.size
+      @max_count_control_fields_list.any? && field_count < @max_count_control_fields_list.first.size
     else
       false
     end

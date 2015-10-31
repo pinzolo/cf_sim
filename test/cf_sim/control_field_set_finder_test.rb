@@ -16,21 +16,10 @@ class CfSim::ControlFieldSetFinderTest < Test::Unit::TestCase
     assert_equal 7, fields.size
   end
 
-  test '全てのフィールドセットを探す' do
-    fields_list = @finder.find_all_fields_list
-    assert_equal 2, fields_list.select { |fields| fields.size == 7 }.size
-  end
-
   test '最大枚数となるフィールドセットを探す' do
     fields_list = @finder.find_max_count_fields_list
     assert_equal 2, fields_list.size
     assert fields_list.all? { |fields| fields.size == 7 }
-  end
-
-  test 'min_field_countを指定した場合、特定枚数以下のフィールドセットは無視される' do
-    finder = CfSim::ControlFieldSetFinder.new(@points.creatable_fields, min_field_count: @points.max_field_count / 2)
-    fields_list = finder.find_all_fields_list
-    assert fields_list.all? { |fields| fields.size >= @points.max_field_count / 2 }, "count: #{fields_list.map(&:size)}"
   end
 
   test 'limit_field_countを指定した場合、特定枚数以下のフィールドセットは無視される' do
