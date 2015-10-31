@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 
 require "cf_sim"
+CfSim::CLI.start
