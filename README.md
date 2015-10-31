@@ -2,9 +2,7 @@
 [![Build Status](https://travis-ci.org/pinzolo/cf_sim.svg)](http://travis-ci.org/pinzolo/cf_sim)
 [![Coverage Status](https://coveralls.io/repos/pinzolo/cf_sim/badge.png)](https://coveralls.io/r/pinzolo/cf_sim)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cf_sim`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+ポータルを列挙したデータファイルから多重CFのURLを出力するシミュレータ
 
 ## Installation
 
@@ -24,7 +22,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### 指定のファイルに列挙されたポータルから作成できる最大面積の多重CFのURLを出力する
+
+```sh
+cf_sim max_area <data_file>
+```
+
+### 指定のファイルに列挙されたポータルから作成できる最大枚数の多重CFのURLを面積順に出力する
+
+```sh
+cf_sim max_count <data_file>
+```
+
+### ポータルデータファイルの書式
+
+各行が `緯度,経度,ポータル名` の CSV ファイル（[参考](test/data_file.txt)）
+ただし、ポータル名は必須ではない
 
 ## Development
 
