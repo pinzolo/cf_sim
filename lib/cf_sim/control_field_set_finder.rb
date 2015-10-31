@@ -19,7 +19,8 @@ class CfSim::ControlFieldSetFinder
   def find_max_count_fields_list
     @max_count_control_fields_list = []
     find_recursively(CfSim::ControlFieldSet.new, @fields, :max_count)
-    @max_count_control_fields_list.sort_by(&:total_area).reverse
+    all_list = @max_count_control_fields_list.sort_by(&:total_area).reverse
+    @limit_field_count ? all_list[0...@limit_field_count] : all_list
   end
 
   private
@@ -27,7 +28,7 @@ class CfSim::ControlFieldSetFinder
   def find_recursively(fields, coexistable_fields, type)
     return if ignore?(fields, coexistable_fields, type)
 
-    if coexistable_fields.empty? || limit?
+    if coexistable_fields.empty?
       deploy(fields, type)
     else
       coexistable_fields.each do |field|
@@ -70,9 +71,5 @@ class CfSim::ControlFieldSetFinder
     else
       false
     end
-  end
-
-  def limit?
-    @limit_field_count && @max_count_control_fields_list && @max_count_control_fields_list.size == @limit_field_count
   end
 end
